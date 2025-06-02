@@ -105,19 +105,20 @@ with st.container():
     st.markdown('<p class="subtitle">Enter restaurant details and see your predicted rating with input visualization</p>', unsafe_allow_html=True)
 
     # Compact form with 5 inputs side by side in 2 rows (columns)
-    col1, col2, col3 = st.columns([1,1,1])
-    with col1:
-        votes = st.number_input("Number of Votes", min_value=0, step=1, format="%d")
-    with col2:
-        cost = st.number_input("Average Cost for Two (₹)", min_value=0, step=10, format="%d")
-    with col3:
-        price_range = st.selectbox("Price Range", [1, 2, 3, 4], help="1 = Low, 4 = High")
+    col1, col2, col3 = st.columns(3)
+with col1:
+    votes = st.number_input("🗳️ Number of Votes", min_value=0, step=1, format="%d")
+with col2:
+    cost = st.number_input("💰 Avg Cost for Two (₹)", min_value=0, step=10, format="%d")
+with col3:
+    price_range = st.selectbox("🏷️ Price Range (1=Low, 4=High)", [1, 2, 3, 4])
 
-    col4, col5 = st.columns([1,1])
-    with col4:
-        online_delivery = st.selectbox("Has Online Delivery?", ['Yes', 'No'])
-    with col5:
-        table_booking = st.selectbox("Has Table Booking?", ['Yes', 'No'])
+col4, col5 = st.columns(2)
+with col4:
+    online_delivery = st.radio("🚚 Has Online Delivery?", ['Yes', 'No'], horizontal=True)
+with col5:
+    table_booking = st.radio("📅 Has Table Booking?", ['Yes', 'No'], horizontal=True)
+
 
     online_delivery_encoded = 1 if online_delivery == 'Yes' else 0
     table_booking_encoded = 1 if table_booking == 'Yes' else 0
